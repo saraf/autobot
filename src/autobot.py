@@ -32,6 +32,7 @@ class AutoBot(irc.bot.SingleServerIRCBot):
         self.name = self.config.get("irc", "name")
         self.network = self.config.get("irc", "network")
         self.port = int(self.config.get("irc", "port"))
+        self.serverpass = self.config.get("irc", "serverpass")
         self._ssl = self.config.getboolean("irc", "ssl")
         self.channel_list = [channel.strip() for channel in self.config.get("irc", "channels").split(",")]
         self.prefix = self.config.get("bot", "prefix")
@@ -44,7 +45,7 @@ class AutoBot(irc.bot.SingleServerIRCBot):
         else:
             factory = irc.connectionFactory()
         try:
-            irc.bot.SingleServerIRCBot.__init__(self, [(self.network, self.port)],
+            irc.bot.SingleServerIRCBot.__init__(self, [(self.network, self.port, self.serverpass)],
                                                 self.nick, self.name,
                                                 reconnection_interval=120,
                                                 connect_factory = factory)

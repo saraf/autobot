@@ -4,6 +4,7 @@ port = 7000
 channels = ##test, ##test2
 nick = autobot
 nickpass = password
+serverpass = serverpassword
 name = Bot
 ssl = True
 
